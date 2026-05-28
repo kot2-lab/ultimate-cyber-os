@@ -1,69 +1,256 @@
 :root{
-display:flex;
-gap:6px;
+    --bg:#050816;
+    --glass:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.15);
+    --glow:#00d9ff;
+    --text:#ffffff;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top,#0a1630,#050816);
+    color:var(--text);
+    font-family:sans-serif;
+    overflow:hidden;
+    height:100vh;
+}
+
+#desktop{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.window{
+    position:absolute;
+    width:340px;
+    height:260px;
+
+    backdrop-filter:blur(18px);
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 0 25px #00d9ff33,
+        inset 0 0 10px rgba(255,255,255,0.05);
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.window-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 15px;
+
+    background:rgba(255,255,255,0.05);
+
+    cursor:move;
+
+    user-select:none;
+}
+
+.window-header h3{
+    margin:0;
+    font-size:16px;
+}
+
+.window-controls{
+    display:flex;
+    gap:8px;
 }
 
 .window-btn{
-width:22px;
-height:22px;
-border:none;
-border-radius:50%;
-background:rgba(255,255,255,0.1);
-color:white;
-cursor:pointer;
+
+    width:24px;
+    height:24px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.2s;
 }
 
 .window-btn:hover{
-box-shadow:0 0 10px var(--glow);
+    background:var(--glow);
+    color:black;
+    box-shadow:0 0 12px var(--glow);
+}
+
+.window-content{
+
+    flex:1;
+
+    padding:15px;
+
+    overflow:auto;
 }
 
 .resize-handle{
-position:absolute;
-right:10px;
-bottom:10px;
-width:16px;
-height:16px;
-border-right:2px solid var(--glow);
-border-bottom:2px solid var(--glow);
-cursor:nwse-resize;
+
+    position:absolute;
+
+    right:10px;
+
+    bottom:10px;
+
+    width:18px;
+
+    height:18px;
+
+    border-right:2px solid var(--glow);
+
+    border-bottom:2px solid var(--glow);
+
+    cursor:nwse-resize;
 }
 
 #taskbar{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-height:60px;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(14px);
-display:flex;
-align-items:center;
-gap:10px;
-padding:0 10px;
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 10px;
+
+    background:rgba(0,0,0,0.45);
+
+    backdrop-filter:blur(15px);
+
+    border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .task-item{
-padding:8px 14px;
-border-radius:10px;
-background:rgba(255,255,255,0.08);
-cursor:pointer;
+
+    padding:8px 14px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.08);
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.task-item:hover{
+    background:var(--glow);
+    color:black;
 }
 
 .cyber-btn{
-padding:10px 15px;
-background:#00d9ff22;
-border:1px solid #00d9ff;
-color:white;
-border-radius:10px;
-cursor:pointer;
+
+    padding:10px 15px;
+
+    margin-top:10px;
+
+    background:#00d9ff22;
+
+    border:1px solid var(--glow);
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:0.2s;
 }
 
-input,textarea,select{
-width:100%;
-margin-top:10px;
-background:rgba(255,255,255,0.08);
-border:none;
-color:white;
-padding:10px;
-border-radius:10px;
+.cyber-btn:hover{
+    background:var(--glow);
+    color:black;
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.08);
+
+    color:white;
+}
+
+textarea{
+    resize:none;
+}
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-top:10px;
+}
+
+.maximized{
+    width:100vw !important;
+    height:calc(100vh - 60px) !important;
+    left:0 !important;
+    top:0 !important;
+    border-radius:0 !important;
+}
+
+@media(max-width:700px){
+
+    .window{
+
+        width:95vw !important;
+
+        height:70vh !important;
+
+        left:2vw !important;
+
+        top:2vh !important;
+    }
+
+    #taskbar{
+        overflow-x:auto;
+    }
 }
