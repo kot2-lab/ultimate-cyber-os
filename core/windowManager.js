@@ -152,8 +152,25 @@ function setupControls(win, title) {
         win.classList.toggle('maximized');
     };
 
-    win.querySelector('.close').onclick = () => {
+win.querySelector('.close').onclick = () => {
 
-        win.remove();
+    win.style.display = 'none';
+
+    const task = document.createElement('div');
+
+    task.className = 'task-item';
+
+    task.textContent = title;
+
+    task.onclick = () => {
+
+        win.style.display = 'block';
+
+        task.remove();
     };
+
+    document
+        .getElementById('taskbar')
+        .appendChild(task);
+};
 }
