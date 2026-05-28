@@ -70,39 +70,4 @@ startH=win.offsetHeight;
 });
 
 window.addEventListener('mousemove',e=>{
-if(!resizing)return;
-
-win.style.width = startW + (e.clientX-startX)+'px';
-win.style.height = startH + (e.clientY-startY)+'px';
-});
-
-window.addEventListener('mouseup',()=>{
-resizing=false;
-});
-}
-
-function setupControls(win,title){
-
-win.querySelector('.min').onclick=()=>{
-win.classList.toggle('minimized');
-};
-
-win.querySelector('.max').onclick=()=>{
-win.classList.toggle('maximized');
-};
-
-win.querySelector('.close').onclick=()=>{
-win.style.display='none';
-
-const task=document.createElement('div');
-task.className='task-item';
-task.textContent=title;
-
-task.onclick=()=>{
-win.style.display='block';
-task.remove();
-};
-
-document.getElementById('taskbar').appendChild(task);
-};
 }
