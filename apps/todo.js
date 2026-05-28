@@ -59,3 +59,12 @@ todoWindow.querySelector('#addTodo').onclick = () => {
         input.value = '';
     }
 };
+import { registerApp }
+from '../system/appRegistry.js';
+
+registerApp('todo', () => {
+
+    document
+    .getElementById('desktop')
+    .appendChild(todoWindow);
+});
