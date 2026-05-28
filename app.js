@@ -8,4 +8,12 @@ import './apps/calendar.js';
 
 import './apps/ai.js';
 
+import './apps/themeSwitcher.js';
+
+import './apps/notifications.js';
+
+import './apps/launcher.js';
+
+import './apps/boot.js';
+
 import './core/tutorial.js';
