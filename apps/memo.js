@@ -15,3 +15,12 @@ memoArea.value = loadData('memo') || '';
 memoArea.addEventListener('input',()=>{
 saveData('memo',memoArea.value);
 });
+import { registerApp }
+from '../system/appRegistry.js';
+
+registerApp('memo', () => {
+
+    document
+    .getElementById('desktop')
+    .appendChild(memoWindow);
+});
