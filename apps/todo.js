@@ -9,40 +9,53 @@ const todoHTML = `
 <ul id="todoList"></ul>
 `;
 
-const todoWindow = createWindow('Todo',todoHTML);
+const todoWindow = createWindow('Todo', todoHTML);
+
 document.getElementById('desktop').appendChild(todoWindow);
 
 const list = todoWindow.querySelector('#todoList');
 
-function renderTodos(){
-list.innerHTML='';
+function renderTodos() {
 
-todos.forEach((todo,index)=>{
-const li = document.createElement('li');
-li.innerHTML=`
-${todo}
-<button data-index="${index}">❌</button>
-`;
+    list.innerHTML = '';
 
-li.querySelector('button').onclick=()=>{
-todos.splice(index,1);
-saveData('todos',todos);
-renderTodos();
-};
+    todos.forEach((todo, index) => {
 
-list.appendChild(li);
-});
+        const li = document.createElement('li');
+
+        li.innerHTML = `
+        ${todo}
+        <button data-index="${index}">❌</button>
+        `;
+
+        li.querySelector('button').onclick = () => {
+
+            todos.splice(index, 1);
+
+            saveData('todos', todos);
+
+            renderTodos();
+        };
+
+        list.appendChild(li);
+
+    });
 }
 
 renderTodos();
 
-todoWindow.querySelector('#addTodo').onclick=()=>{
-const input = todoWindow.querySelector('#todoInput');
+todoWindow.querySelector('#addTodo').onclick = () => {
 
-if(input.value.trim()){
-todos.push(input.value);
-saveData('todos',todos);
-renderTodos();
-input.value='';
-}
+    const input = todoWindow.querySelector('#todoInput');
+
+    if (input.value.trim()) {
+
+        todos.push(input.value);
+
+        saveData('todos', todos);
+
+        renderTodos();
+
+        input.value = '';
+    }
 };
