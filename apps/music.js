@@ -37,7 +37,7 @@ bgm.pause();
 
 document.getElementById('volume').oninput=e=>{
 bgm.volume = e.target.value;
-};
+};　
 
 document.getElementById('musicUpload').onchange=e=>{
 const file = e.target.files[0];
